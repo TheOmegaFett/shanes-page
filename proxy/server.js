@@ -30,6 +30,9 @@ async function forward(url, res) {
   }
 }
 
+// Handle preflight requests
+app.options("*", cors());
+
 /** RSS: /gn/rss/search?q=...&hl=...&gl=...&ceid=... */
 app.get("/gn/*", async (req, res) => {
   // Only allow Google News host

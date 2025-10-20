@@ -90,7 +90,9 @@ async function fetchWithFallback(
       clearTimeout(t);
     }
   };
-  const chain = [url, ...rssFallbacks.map((fn) => fn(url))];
+  // Only use fallbacks if the URL doesn't already go through a proxy
+  const shouldUseFallbacks = !url.includes('walts-proxy') && !PROXY;
+  const chain = shouldUseFallbacks ? [url, ...rssFallbacks.map((fn) => fn(url))] : [url];
   await new Promise((r) => setTimeout(r, Math.random() * jitterMs));
   let lastErr;
   for (const u of chain) {

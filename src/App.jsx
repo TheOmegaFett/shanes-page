@@ -383,11 +383,8 @@ const TOPICS = [
   },
   {
     key: "twitch",
-    title: "Twitch & Streaming",
-    feeds: [
-      g('"Twitch" OR "live streaming" OR "streamer news"'),
-      g('"OBS" OR "YouTube Live" OR "Kick streaming"'),
-    ],
+    title: "Twitch",
+    feeds: [g('"Twitch"'), g('"OBS" OR "YouTube Live" OR "Kick streaming"')],
   },
   {
     key: "metaphysics",

@@ -1,0 +1,226 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #121821;
+  --panel-2: #0f1520;
+  --text: #ecf2ff;
+  --muted: #a8b2c3;
+  --muted-2: #7f8aa3;
+  --card: #121a27;
+  --border: #1e2a3a;
+  --tag-purple: #a461ff;
+  --tag-green: #41d39c;
+  --tag-red: #ff6a6a;
+  --tag-blue: #65a7ff;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 70% -10%, #122034, #0b0f14 55%);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, Inter, Segoe UI, Roboto, Arial;
+}
+.topbar {
+  padding: 18px 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0)
+  );
+  border-bottom: 1px solid #0f1520;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+}
+.topbar h1 {
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+.topbar__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.grid {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 1160px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.column {
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.column__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.topic-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+.column__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.chip {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #0f1520;
+  border: 1px solid var(--border);
+  color: var(--muted-2);
+}
+.refresh {
+  margin-left: auto;
+  background: #0f1520;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.refresh:hover {
+  border-color: #2a3a52;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.search {
+  flex: 1;
+  background: #0e1420;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.hint {
+  padding: 12px 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.hint.error {
+  color: #ffb0b0;
+}
+.cards {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  grid-template-columns: 1fr;
+}
+.cards.scroll {
+  max-height: 72vh;
+  overflow: auto;
+  padding-right: 8px;
+}
+.card {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 8px;
+  padding: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.12s ease, border-color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #2b3b53;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #0e1420;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.thumb__fallback {
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.meta__source {
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.95;
+}
+.meta__date {
+  margin-left: auto;
+  opacity: 0.85;
+}
+.card__title {
+  font-size: 15px;
+  line-height: 1.25;
+  margin: 0;
+}
+.endcap {
+  text-align: center;
+  color: var(--muted-2);
+  padding: 10px 0 4px;
+  font-size: 12px;
+}
+.foot {
+  padding: 16px 18px 26px;
+  color: var(--muted);
+  text-align: center;
+}

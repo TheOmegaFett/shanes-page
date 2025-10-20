@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Build output
+dist/
+build/
+.cache/
+.tmp/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Editor & system files
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+.idea/
+.vscode/
+*.iml
+
+# Netlify / Vite
+.netlify/
+functions-dist/
+.vite/
+
+# Optional: if you use tests
+coverage/
+*.spec.*
+*.test.*
+
+# Mac/Windows junk
+._*
+ehthumbs.db
+Desktop.ini

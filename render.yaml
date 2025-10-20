@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: walts-page
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_PROXY_ORIGIN
+        value: https://walts-proxy.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  - type: web
+    name: walts-proxy
+    env: node
+    plan: free
+    rootDir: proxy
+    buildCommand: ""
+    startCommand: node server.js

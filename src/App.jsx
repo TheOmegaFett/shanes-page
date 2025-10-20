@@ -340,7 +340,8 @@ const TOPICS = [
     title: "Gaming & Marvel Strike Force",
     feeds: [
       g('"Marvel Strike Force" OR "Scopely"'),
-      g('gaming OR "video games" OR "game industry"'),
+      g('"Nintendo" OR "Steam" OR "PlayStation" OR "Xbox" OR "PC gaming"'),
+      g('"game releases" OR "esports" OR "game reviews" -gambling -casino -slots'),
     ],
   },
   {

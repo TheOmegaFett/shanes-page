@@ -6,7 +6,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_PROXY_ORIGIN
-        value: https://shanes-proxy.onrender.com
+        value: https://shanes-page.onrender.com
     routes:
       - type: rewrite
         source: /*

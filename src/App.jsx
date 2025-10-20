@@ -91,7 +91,7 @@ async function fetchWithFallback(
     }
   };
   // Only use fallbacks if the URL doesn't already go through a proxy
-  const shouldUseFallbacks = !url.includes('shanes-proxy') && !PROXY;
+  const shouldUseFallbacks = !url.includes('shanes-page') && !PROXY;
   const chain = shouldUseFallbacks ? [url, ...rssFallbacks.map((fn) => fn(url))] : [url];
   await new Promise((r) => setTimeout(r, Math.random() * jitterMs));
   let lastErr;

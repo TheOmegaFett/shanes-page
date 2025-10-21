@@ -1,0 +1,67 @@
+{
+  "Australia_News": [
+    "https://www.abc.net.au/news/feed/2942460/rss.xml",
+    "https://www.sbs.com.au/news/feed",
+    "https://www.news.com.au/content-feeds/latest-news-national/",
+    "https://thewest.com.au/rss-feeds",
+    "https://press-start.com.au/feed",
+    "https://progressbar.com.au/feed",
+    "https://theindependents.au/independent-media-feed-sources/"
+  ],
+  "UK_US_Gaming_Dev_Programming": [
+    "https://gameinformer.com/rss",
+    "https://gamedev.net/articles/feed",
+    "https://gamefromscratch.com/feed",
+    "https://dev.to/feed",
+    "https://stackblogoverflow.blog/feed",
+    "https://freecodecamp.org/news/rss",
+    "https://alistapart.com/main/feed",
+    "https://blog.jooq.org/feed",
+    "https://www.gamedeveloper.com/rss.xml",
+    "https://feeds.feedburner.com/GamasutraNews",
+    "https://www.indiedb.com/rss",
+    "https://itch.io/blog.rss",
+    "https://indiexpo.net/feed?locale=en"
+  ],
+  "Consciousness_Esoteric_Underground": [
+    "https://consciouslifenews.com/feed",
+    "https://themindunleashed.com/consciousness/feed",
+    "https://in5d.com/feed",
+    "https://consciousbridge.com/wordpress/?feed=rss2",
+    "https://esotericwitch.com/rss",
+    "https://wakeup-world.com/category/esoteric-knowledge/feed",
+    "https://nightlightnews.org/daily-studies/feed",
+    "https://rss.tedt.org/",
+    "https://rss.feedspot.com/metaphysical_rss_feeds/",
+    "https://rss.feedspot.com/consciousness_rss_feeds/",
+    "https://rss.feedspot.com/spiritual_rss_feeds/",
+    "https://rss.feedspot.com/new_thought_rss_feeds/",
+    "https://rss.feedspot.com/gnosticism_rss_feeds/",
+    "https://bloggers.feedspot.com/consciousness_blogs/"
+  ],
+  "Gaming_VideoGame_Wider": [
+    "https://rss.feedspot.com/video_game_rss_feeds/",
+    "https://rss.feedspot.com/pc_gaming_rss_feeds/",
+    "https://rss.feedspot.com/video_game_news_rss_feeds/",
+    "https://rss.feedspot.com/indie_game_rss_feeds/",
+    "https://rss.app/rss-feed/categories/Gaming",
+    "https://feeder.co/discover/gaming?page=1"
+  ],
+  "Programming_Tech_Feeds": [
+    "https://rss.feedspot.com/programming_rss_feeds/",
+    "https://rss.feedspot.com/developers_rss_feeds/",
+    "https://rss.feedspot.com/software_development_rss_feeds/",
+    "https://rss.feedspot.com/software_engineering_rss_feeds/",
+    "https://rss.feedspot.com/computer_science_rss_feeds/",
+    "https://rss.feedspot.com/technology_rss_feeds/",
+    "https://rss.app/blog/top-rss-feeds/38-best-technology-websites-to-get-rss-feeds-from"
+  ],
+  "Metaphysical_Spiritual_Extras": [
+    "https://rss.feedspot.com/metaphysical_rss_feeds/",
+    "https://rss.feedspot.com/new_thought_rss_feeds/",
+    "https://rss.feedspot.com/spiritual_rss_feeds/",
+    "https://nightlightnews.org/",
+    "https://www.esotericwitch.com/rss",
+    "https://wakeup-world.com/category/esoteric-knowledge/feed"
+  ]
+}

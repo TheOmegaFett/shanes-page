@@ -18,17 +18,12 @@ const g = (q) => {
 };
 // Topic colors
 const COLORS = {
-  ai: "var(--tag-purple)",
-  ml: "var(--tag-indigo)",
-  neural: "var(--tag-cyan)",
-  gaming: "var(--tag-green)",
-  webdev: "var(--tag-blue)",
-  tech: "var(--tag-yellow)",
-  apple: "var(--tag-orange)",
-  elgato: "var(--tag-pink)",
-  corsair: "var(--tag-teal)",
-  twitch: "var(--tag-red)",
-  metaphysics: "var(--tag-gray)",
+  ai: "#a461ff",
+  msf: "#ff4655",
+  gaming: "#41d39c",
+  streaming: "#9146ff",
+  webdev: "#65a7ff",
+  tech: "#ffaa41",
 };
 
 // URL helpers
@@ -307,94 +302,111 @@ function formatTS(ts) {
       });
 }
 
+function getArticleHighlight(title, ts) {
+  const lower = title.toLowerCase();
+  const daysSince = (Date.now() - ts) / (1000 * 60 * 60 * 24);
+  
+  // MSF breaking news (last 2 days)
+  if (daysSince <= 2 && (lower.includes("marvel strike force") || lower.includes("scopely"))) {
+    return { border: "#ff4655", glow: "0 0 12px rgba(255, 70, 85, 0.3)" };
+  }
+  
+  // AI tools (ChatGPT, Sourcegraph Amp, GitHub Copilot)
+  if (lower.includes("chatgpt") || lower.includes("gpt-4") || lower.includes("gpt-5") || 
+      lower.includes("sourcegraph") || lower.includes("amp") && lower.includes("ai") ||
+      lower.includes("github copilot") || lower.includes("copilot")) {
+    return { border: "#a461ff", glow: "0 0 10px rgba(164, 97, 255, 0.3)" };
+  }
+  
+  // Twitch
+  if (lower.includes("twitch")) {
+    return { border: "#9146ff", glow: "0 0 8px rgba(145, 70, 255, 0.2)" };
+  }
+  
+  // Nintendo/Mario/Zelda
+  if (lower.includes("nintendo") || lower.includes("mario") || lower.includes("zelda")) {
+    return { border: "#e60012", glow: "0 0 8px rgba(230, 0, 18, 0.2)" };
+  }
+  
+  // JavaScript/Python
+  if (lower.includes("javascript") || lower.includes("python") || lower.includes("typescript") || lower.includes("node.js")) {
+    return { border: "#65a7ff", glow: "0 0 8px rgba(101, 167, 255, 0.2)" };
+  }
+  
+  return null;
+}
+
 /* =========================
    Topics
    ========================= */
 const TOPICS = [
   {
     key: "ai",
-    title: "Artificial Intelligence",
+    title: "AI, ML & Neural Networks",
     feeds: [
       g('"artificial intelligence" OR "AI news"'),
       g('"OpenAI" OR "ChatGPT" OR "Claude" OR "Gemini"'),
-    ],
-  },
-  {
-    key: "ml",
-    title: "Machine Learning",
-    feeds: [
       g('"machine learning" OR "deep learning"'),
       g('"data science" OR "ML models"'),
-    ],
-  },
-  {
-    key: "neural",
-    title: "Neural Networks",
-    feeds: [
       g('"neural networks" OR "transformers" OR "diffusion models"'),
       g('"computer vision" OR "reinforcement learning"'),
     ],
   },
   {
-    key: "gaming",
-    title: "Gaming & Marvel Strike Force",
+    key: "msf",
+    title: "Marvel Strike Force",
     feeds: [
-      g('"Marvel Strike Force" OR "Scopely"'),
-      g('"Nintendo" OR "Steam" OR "PlayStation" OR "Xbox" OR "PC gaming"'),
-      g('"game releases" OR "esports" OR "game reviews" -gambling -casino -slots'),
+      "https://www.gameskinny.com/games/marvel-strike-force/?format=rss",
+      "https://rss.feedspot.com/marvel_rss_feeds/",
+      g('"Marvel Strike Force" "update" OR "patch" OR "character" OR "event"'),
+      g('"Scopely" "Marvel" "mobile game"'),
+      g('"MSF" "game" "Marvel"'),
+      g('"Marvel Strike Force" "tier list" OR "guide" OR "tier"'),
+    ],
+  },
+  {
+    key: "gaming",
+    title: "Gaming",
+    feeds: [
+      g('"Nintendo Switch" OR "Nintendo Direct" OR "Super Mario" OR "Zelda"'),
+      g('"Steam Deck" OR "Steam game" OR "Steam release" OR "Valve"'),
+      g('"PC gaming" OR "gaming PC" OR "RTX" OR "AMD gaming"'),
+      g('"PlayStation 5" OR "PS5" OR "Xbox Series" OR "Game Pass"'),
+      g('"esports tournament" OR "gaming championship" -gambling -casino -betting'),
+    ],
+  },
+  {
+    key: "streaming",
+    title: "Streaming",
+    feeds: [
+      g('"Twitch streamer" OR "Twitch stream" OR "Twitch news"'),
+      g('"OBS Studio" OR "Streamlabs" OR "streaming software"'),
+      g('"YouTube Live" OR "YouTube streaming" OR "Kick streaming platform"'),
     ],
   },
   {
     key: "webdev",
     title: "Web Development",
     feeds: [
-      g('"web development" OR "frontend" OR "backend" OR "full stack"'),
-      g('JavaScript OR React OR Next.js OR "web performance"'),
+      g('"web development framework" OR "frontend framework" OR "backend framework"'),
+      g('"React framework" OR "Next.js framework" OR "Vue.js" OR "Svelte"'),
+      g('"TypeScript release" OR "Node.js update" OR "JavaScript ES2024"'),
+      g('"REST API" OR "GraphQL" OR "web components" OR "responsive design"'),
+      g('"webpack" OR "vite build" OR "package manager" -CSS -tailwind -npm'),
     ],
   },
   {
     key: "tech",
-    title: "Technology",
+    title: "Technology & Hardware",
     feeds: [
       g('"tech industry" OR "consumer electronics"'),
       g('"hardware reviews" OR "innovation" OR "startups"'),
-    ],
-  },
-  {
-    key: "apple",
-    title: "Apple Inc.",
-    feeds: [
       g('"Apple" OR "MacBook" OR "iPhone" OR "iOS"'),
       g('"Tim Cook" OR "Apple keynote" OR "WWDC"'),
-    ],
-  },
-  {
-    key: "elgato",
-    title: "Elgato",
-    feeds: [
       g('"Elgato" OR "Stream Deck" OR "Facecam"'),
       g('"Corsair Elgato" OR "streaming gear"'),
-    ],
-  },
-  {
-    key: "corsair",
-    title: "Corsair Gaming",
-    feeds: [
       g('"Corsair" OR "Corsair PC" OR "iCUE"'),
       g('"Corsair peripherals" OR "gaming hardware"'),
-    ],
-  },
-  {
-    key: "twitch",
-    title: "Twitch",
-    feeds: [g('"Twitch"'), g('"OBS" OR "YouTube Live" OR "Kick streaming"')],
-  },
-  {
-    key: "metaphysics",
-    title: "Metaphysics & Consciousness",
-    feeds: [
-      g('"metaphysics" OR "ontology" OR "philosophy of mind"'),
-      g('"consciousness studies" OR "quantum consciousness"'),
     ],
   },
 ];
@@ -484,6 +496,16 @@ function FeedColumn({ topic, pollMs = 60000, batchSize = 24 }) {
 
   const filtered = useMemo(() => {
     return items.filter((it) => {
+      // For MSF topic, filter to only show MSF-related content
+      if (topic.key === "msf") {
+        const lower = it.title.toLowerCase();
+        const isMSF = 
+          lower.includes("marvel strike force") ||
+          lower.includes("strike force") && lower.includes("marvel") ||
+          lower.includes("msf") && (lower.includes("game") || lower.includes("scopely"));
+        if (!isMSF) return false;
+      }
+      
       const hitQ = !q || it.title.toLowerCase().includes(q.toLowerCase());
       const hitS =
         !src ||
@@ -491,7 +513,7 @@ function FeedColumn({ topic, pollMs = 60000, batchSize = 24 }) {
         (it.link && it.link.toLowerCase().includes(src.toLowerCase()));
       return hitQ && hitS;
     });
-  }, [items, q, src]);
+  }, [items, q, src, topic.key]);
 
   const shown = filtered.slice(0, visible);
 
@@ -527,14 +549,24 @@ function FeedColumn({ topic, pollMs = 60000, batchSize = 24 }) {
       {status === "error" && <p className="hint error">Couldn’t load feeds.</p>}
 
       <div className="cards scroll" ref={scroller}>
-        {shown.map((it, i) => (
-          <a
-            className="card"
-            key={`${topic.key}-${i}-${it.link}`}
-            href={it.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        {shown.map((it, i) => {
+          const highlight = getArticleHighlight(it.title, it.ts);
+          return (
+            <a
+              className="card"
+              key={`${topic.key}-${i}-${it.link}`}
+              href={it.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={
+                highlight
+                  ? {
+                      borderColor: highlight.border,
+                      boxShadow: highlight.glow,
+                    }
+                  : undefined
+              }
+            >
             {SHOW_IMAGES && it.image && (
               <div className="thumb">
                 <img
@@ -564,8 +596,9 @@ function FeedColumn({ topic, pollMs = 60000, batchSize = 24 }) {
               <div className="meta__date">{formatTS(it.ts)}</div>
             </div>
             <h3 className="card__title">{it.title}</h3>
-          </a>
-        ))}
+            </a>
+          );
+        })}
         <div className="endcap">
           {visible < filtered.length
             ? "Scroll to load more…"
